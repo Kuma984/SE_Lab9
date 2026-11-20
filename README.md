@@ -1,48 +1,53 @@
 # Lab 09 - Software Testing
 
-## Yêu cầu môi trường
-- .NET SDK 8.0
+## Requirements
+- .NET 8.0 SDK
 - Visual Studio 2022
 - Google Chrome
 
-## Cấu trúc bài làm
-- `src/BasicMath`: Ứng dụng console demo các phép tính (Bài 1 & 2)
-- `tests/BasicMathTests`: Unit test kiểm thử BasicMath với file CSV (Bài 1 & 2)
-- `src/BankAccountApp`: Lớp BankAccount mô phỏng nghiệp vụ tài khoản ngân hàng (Bài 3)
-- `tests/BankAccountTests`: Unit test kiểm thử BankAccount với file CSV (Bài 3)
-- `tests/LoginAutomation`: Kiểm thử tự động trang login với Selenium WebDriver (Bài 4)
+## Project Structure
+- `src/BasicMath`: Console app demonstrating basic arithmetic operations (Exercise 1 & 2)
+- `tests/BasicMathTests`: Unit tests for BasicMath using CSV datasets (Exercise 1 & 2 - 50 tests)
+- `src/BankAccountApp`: BankAccount domain class and operations (Exercise 3)
+- `tests/BankAccountTests`: Unit tests for BankAccount using CSV datasets (Exercise 3 - 16 tests)
+- `tests/LoginAutomation`: Automated UI test for login page using Selenium WebDriver (Exercise 4 - 4 tests)
 
-## Hướng dẫn chạy
+## How to Run
 
-### 1. Chạy trên Visual Studio
-- Mở file `SE_Lab9_524K0021.sln`.
-- **Chạy demo console:** Nhấn **F5** (dự án `BasicMath` là Startup Project).
-- **Chạy toàn bộ unit test:** Mở menu **Test** -> **Test Explorer** (`Ctrl + E, T`), nhấn nút **Run All** (`Ctrl + R, A`).
-- **Chạy riêng Bài 4 (Selenium):** Trong bảng Test Explorer, chuột phải vào `LoginAutomation` -> chọn **Run**.
+### 1. Visual Studio
+1. Open `SE_Lab9_524K0021.sln`.
+2. **Run Demo Console App:** Press **F5** (`BasicMath` is set as the startup project).
+3. **Run All Unit Tests:** Open **Test** -> **Test Explorer** (`Ctrl + E, T`), then click **Run All Tests in View** (`Ctrl + R, A`).
+4. **Run Exercise 4 (Selenium):** In Test Explorer, right-click `LoginAutomation` -> select **Run**.
 
-### 2. Chạy bằng dòng lệnh (CLI)
-Mở terminal tại thư mục gốc của bài làm:
+---
 
-- Chạy app demo:
+### 2. Command Line (CLI)
+Open a terminal in the project root:
+
+- **Run demo console app:**
   ```bash
   dotnet run --project src/BasicMath
   ```
 
-- Chạy toàn bộ 70 test case:
+- **Run all 70 test cases:**
   ```bash
   dotnet test
   ```
 
-- Chạy riêng từng bài test:
+- **Run individual test suites:**
   ```bash
   dotnet test tests/BasicMathTests
   dotnet test tests/BankAccountTests
   dotnet test tests/LoginAutomation
   ```
 
-### Lưu ý cho Bài 4 (Selenium):
-Mặc định Selenium chạy ở chế độ headless (chạy ngầm). Nếu muốn hiển thị cửa sổ Chrome tự động gõ chữ và đăng nhập trên màn hình:
-Mở file `tests/LoginAutomation/LoginTests.cs`, thêm dấu `//` trước dòng 43:
+---
+
+### Note for Exercise 4 (Selenium WebDriver)
+By default, the Selenium test runs in headless mode (background). If you want to see the Chrome browser open, type credentials, and click login visibly:
+Open `tests/LoginAutomation/LoginTests.cs`, comment out line 43:
 ```csharp
 // options.AddArgument("--headless=new");
 ```
+Then rerun the test.
