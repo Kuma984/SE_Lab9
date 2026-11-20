@@ -1,75 +1,48 @@
-# SE Lab 09: Software Testing
+# Lab 09 - Software Testing
 
-Course: Software Engineering (FIT - TDTU)  
-Instructor: Mr. Ky-Trung Pham (tg_phamthaikytrung@tdtu.edu.vn)  
-Student: Trịnh Đức Long (524K0021)  
-GitHub Repository: https://github.com/Kuma984/SE_Lab9.git  
+## Yêu cầu môi trường
+- .NET SDK 8.0
+- Visual Studio 2022
+- Google Chrome
 
----
-
-## 1. Yêu cầu môi trường
-- .NET SDK 8.0 trở lên
-- Visual Studio 2022 (cài đặt workload .NET desktop / Web development)
-- Google Chrome (dùng cho bài 4 Selenium)
-
----
-
-## 2. Cấu trúc bài làm
-Solution: `SE_Lab9_524K0021.sln`
-- `src/BasicMath`: Console app chạy demo các phép tính (Bài 1 & 2)
-- `tests/BasicMathTests`: Unit test xUnit kiểm thử lớp BasicMath và đọc file CSV (Bài 1 & 2 - 50 test case)
+## Cấu trúc bài làm
+- `src/BasicMath`: Ứng dụng console demo các phép tính (Bài 1 & 2)
+- `tests/BasicMathTests`: Unit test kiểm thử BasicMath với file CSV (Bài 1 & 2)
 - `src/BankAccountApp`: Lớp BankAccount mô phỏng nghiệp vụ tài khoản ngân hàng (Bài 3)
-- `tests/BankAccountTests`: Unit test kiểm thử lớp BankAccount với dữ liệu từ file CSV (Bài 3 - 16 test case)
-- `tests/LoginAutomation`: Kiểm thử tự động trang đăng nhập bằng Selenium WebDriver (Bài 4 - 4 test case)
+- `tests/BankAccountTests`: Unit test kiểm thử BankAccount với file CSV (Bài 3)
+- `tests/LoginAutomation`: Kiểm thử tự động trang login với Selenium WebDriver (Bài 4)
 
----
+## Hướng dẫn chạy
 
-## 3. Hướng dẫn chạy
+### 1. Chạy trên Visual Studio
+- Mở file `SE_Lab9_524K0021.sln`.
+- **Chạy demo console:** Nhấn **F5** (dự án `BasicMath` là Startup Project).
+- **Chạy toàn bộ unit test:** Mở menu **Test** -> **Test Explorer** (`Ctrl + E, T`), nhấn nút **Run All** (`Ctrl + R, A`).
+- **Chạy riêng Bài 4 (Selenium):** Trong bảng Test Explorer, chuột phải vào `LoginAutomation` -> chọn **Run**.
 
-### Cách 1: Chạy trên Visual Studio (Khuyên dùng)
-1. Mở file `SE_Lab9_524K0021.sln` bằng Visual Studio 2022.
-2. **Chạy demo console (F5):**
-   - Đảm bảo dự án `BasicMath` được chọn làm Startup Project.
-   - Nhấn **F5** (hoặc nút Run màu xanh).
-   - Màn hình console sẽ hiện kết quả tính toán demo của BasicMath, BankAccount và hướng dẫn chạy test, sau đó dừng lại chờ nhấn Enter (không bị tắt cửa sổ).
-3. **Chạy toàn bộ 70 Unit Test:**
-   - Trên menu trên cùng chọn **Test** -> **Test Explorer** (phím tắt `Ctrl + E, T`).
-   - Nhấn nút **Run All Tests in View** (icon hình 2 tam giác xanh).
-   - Toàn bộ 70 test case sẽ chạy và hiện tích xanh (Passed 100%).
-4. **Chạy riêng Bài 4 (Selenium WebDriver):**
-   - Trong bảng **Test Explorer**, mở rộng `LoginAutomation` -> `LoginTests`.
-   - Chuột phải vào `LoginTests` chọn **Run**.
+### 2. Chạy bằng dòng lệnh (CLI)
+Mở terminal tại thư mục gốc của bài làm:
 
----
+- Chạy app demo:
+  ```bash
+  dotnet run --project src/BasicMath
+  ```
 
-### Cách 2: Chạy nhanh bằng dòng lệnh (Terminal / PowerShell)
-Mở terminal tại thư mục bài làm:
+- Chạy toàn bộ 70 test case:
+  ```bash
+  dotnet test
+  ```
 
-1. Chạy chương trình demo:
-   ```powershell
-   dotnet run --project src/BasicMath
-   ```
+- Chạy riêng từng bài test:
+  ```bash
+  dotnet test tests/BasicMathTests
+  dotnet test tests/BankAccountTests
+  dotnet test tests/LoginAutomation
+  ```
 
-2. Chạy toàn bộ 70 test case:
-   ```powershell
-   dotnet test
-   ```
-
-3. Chạy riêng từng bài kiểm thử:
-   - Bài 1 & 2 (BasicMath):
-     ```powershell
-     dotnet test tests/BasicMathTests
-     ```
-   - Bài 3 (BankAccount):
-     ```powershell
-     dotnet test tests/BankAccountTests
-     ```
-   - Bài 4 (Selenium Login Automation):
-     ```powershell
-     dotnet test tests/LoginAutomation
-     ```
-
-> **Lưu ý riêng cho Bài 4:**  
-> Mặc định Selenium chạy ở chế độ headless (chạy ngầm). Nếu muốn xem trực tiếp trình duyệt Chrome bật lên màn hình, tự động gõ username/password và tự click đăng nhập:  
-> Mở file `tests/LoginAutomation/LoginTests.cs`, thêm dấu comment `//` ở dòng 43:  
-> `// options.AddArgument("--headless=new");` rồi chạy lại test.
+### Lưu ý cho Bài 4 (Selenium):
+Mặc định Selenium chạy ở chế độ headless (chạy ngầm). Nếu muốn hiển thị cửa sổ Chrome tự động gõ chữ và đăng nhập trên màn hình:
+Mở file `tests/LoginAutomation/LoginTests.cs`, thêm dấu `//` trước dòng 43:
+```csharp
+// options.AddArgument("--headless=new");
+```
