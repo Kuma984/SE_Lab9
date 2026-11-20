@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f6f8; }
+        .login-card { background: white; padding: 25px; border-radius: 8px; width: 320px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; color: #333; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { margin-top: 15px; width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        #message { margin-top: 15px; font-weight: bold; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2>System Login</h2>
+        <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <button type="submit" id="loginButton">Login</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function handleLogin() {
+            var u = document.getElementById("username").value;
+            var p = document.getElementById("password").value;
+            var msg = document.getElementById("message");
+            if (u && p) {
+                msg.className = "success";
+                msg.innerText = "Login successful for user: " + u;
+            } else {
+                msg.className = "error";
+                msg.innerText = "Please provide both username and password.";
+            }
+        }
+    </script>
+</body>
+</html>
